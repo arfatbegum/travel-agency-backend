@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "E:\\travel-agency-backend\\logs\\winston\\successes\\.e54c9fb9ae886988561eaa180c3c6a6117b16993-audit.json",
+    "files": [
+        {
+            "date": 1697075357505,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-12-10-04-success.log",
+            "hash": "3c92e99bcd3ac48e9e03107943b5c2b4a5d262230f78c28ea2256e97c75c4181"
+        },
+        {
+            "date": 1697076000538,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-12-10-05-success.log",
+            "hash": "9d9d12b2d886a98d0d6a08e7c9e91dbb55f672afc0ba6611ad2eb12a1171336e"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { role } from "../auth/auth.constants";
 
-const createUserZodSchema = z.object({
+const createAdminZodSchema = z.object({
   body: z.object({
     name: z.string({
       required_error: "Phone Number is required ",
@@ -25,7 +25,7 @@ const createUserZodSchema = z.object({
    }),
 });
 
-const updateUserZodSchema = z.object({
+const updateAdminZodSchema = z.object({
   body: z.object({
     name: z.string({
       required_error: "Name is required ",
@@ -50,7 +50,7 @@ const updateUserZodSchema = z.object({
 });
 
 
-export const UserValidation = {
-  updateUserZodSchema,
-  createUserZodSchema
+export const AdminValidation = {
+  createAdminZodSchema,
+  updateAdminZodSchema
 };

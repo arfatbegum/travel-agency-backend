@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import catchAsync from "../../../shared/catchAsync";
-import { UserService } from "./user.service";
 import sendResponse from "../../../shared/sendResponse";
+import { AdminService } from "./admin.service";
 
-const createUser = catchAsync(async (req: Request, res: Response) => {
+const createAdmin = catchAsync(async (req: Request, res: Response) => {
   const { ...userData } = req.body;
-  const result = await UserService.createUser(userData);
+  const result = await AdminService.createAdmin(userData);
 
   sendResponse(res, {
     success: true,
@@ -16,8 +16,8 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-  const result = await UserService.getAllUsers();
+const getAllAdmins = catchAsync(async (req: Request, res: Response) => {
+  const result = await AdminService.getAllAdmins();
 
   sendResponse(res, {
     success: true,
@@ -27,9 +27,9 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const getSingleUser = catchAsync(async (req: Request, res: Response) => {
+const getSingleAdmin = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await UserService.getSingleUser(id);
+  const result = await AdminService.getSingleAdmin(id);
 
   sendResponse(res, {
     success: true,
@@ -39,11 +39,11 @@ const getSingleUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const updateUser = catchAsync(async (req: Request, res: Response) => {
+const updateAdmin = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const updatedData = req.body;
 
-  const result = await UserService.updateUser(id, updatedData);
+  const result = await AdminService.updateAdmin(id, updatedData);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -53,9 +53,9 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const deleteAUser = catchAsync(async (req: Request, res: Response) => {
+const deleteAdmin = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await UserService.deleteAUser(id);
+  const result = await AdminService.deleteAdmin(id);
 
   sendResponse(res, {
     success: true,
@@ -69,7 +69,7 @@ const getMyProfile = catchAsync(async (req: Request, res: Response) => {
   const userId = req.user?.userId;
   const userRole = req.user?.role;
 
-  const result = await UserService.getMyProfile(userId, userRole);
+  const result = await AdminService.getMyProfile(userId, userRole);
 
   sendResponse(res, {
     success: true,
@@ -79,11 +79,11 @@ const getMyProfile = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export const UserController = {
-  createUser,
-  getAllUsers,
-  getSingleUser,
-  updateUser,
-  deleteAUser,
+export const AdminController = {
+  createAdmin,
+  getAllAdmins,
+  getSingleAdmin,
+  updateAdmin,
+  deleteAdmin,
   getMyProfile
 };

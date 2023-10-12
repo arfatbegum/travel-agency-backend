@@ -32,7 +32,18 @@ const createUser = async (data: User): Promise<User> => {
 };
 
 const getAllUsers = async () => {
-  return await prisma.user.findMany();
+  const result = await prisma.user.findMany({
+    include: {
+      bookings: true,
+    },
+  });
+  const total = await prisma.service.count();
+  return {
+    meta: {
+      total,
+    },
+    data: result,
+  };
 };
 
 const getSingleUser = async (id: string): Promise<User | null> => {

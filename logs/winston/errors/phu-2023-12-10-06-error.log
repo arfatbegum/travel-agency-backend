@@ -1,0 +1,13 @@
+Thu Oct 12 2023 6:3:46 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Password is incorrect
+Thu Oct 12 2023 6:5:49 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "expected": "'super_admin' | 'admin' | 'user'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "Required"
+  }
+]

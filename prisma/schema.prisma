@@ -23,6 +23,8 @@ model User {
   reviews    Review[]
   createdAt  DateTime  @default(now()) @map("created_at")
   updatedAt  DateTime  @updatedAt @map("updated_at")
+
+  @@map("user")
 }
 
 enum Role {
@@ -31,19 +33,36 @@ enum Role {
   user
 }
 
-model Service {
-  id          String   @id @default(uuid())
-  name        String
-  location    String
-  category    String
-  price       Int
-  description String
-  reviews     Review[]
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+model Category {
+  id         String    @id @default(uuid())
+  name       String
+  Services   Service[]
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+
+  @@map("category")
 }
 
-// Booking model for booking and tracking
+model Service {
+  id          String   @id @default(uuid())
+  categoryId  String
+  name        String
+  location    String
+  price       Int
+  person      String
+  duration    String
+  description String
+  facilities  String
+  whyChooseUs String
+  image       String
+  reviews     Review[]
+  Categorires Category @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("service")
+}
+
 model Booking {
   id        String   @id @default(uuid())
   userId    String
@@ -53,9 +72,10 @@ model Booking {
   User      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("booking")
 }
 
-// Review model for leaving reviews and ratings
 model Review {
   id        String   @id @default(uuid())
   userId    String
@@ -66,13 +86,17 @@ model Review {
   Service   Service  @relation(fields: [serviceId], references: [id])
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("review")
 }
 
-model Content {
+model Blog {
   id          String   @id @default(uuid())
   contentType String
   title       String
   content     String
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("blog")
 }

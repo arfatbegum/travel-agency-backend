@@ -1,8 +1,6 @@
-import { User } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import { Secret } from 'jsonwebtoken';
-import validator from 'validator';
 import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
@@ -12,33 +10,6 @@ import {
   ILoginUserResponse,
   IRefreshTokenResponse,
 } from './auth.interface';
-
-const createUser = async (data: User): Promise<User> => {
-  const { name, email, password, contactNo, address, profileImg } = data;
-
-  if (!validator.isEmail(email)) {
-    throw new Error('Invalid email address');
-  }
-
-  const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS);
-  if (isNaN(saltRounds) || saltRounds <= 0) {
-    throw new Error('BCRYPT_SALT_ROUNDS is not properly configured.');
-  }
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
-  const user = await prisma.user.create({
-    data: {
-      name,
-      email,
-      password: hashedPassword,
-      role: 'user',
-      contactNo,
-      address,
-      profileImg,
-    },
-  });
-
-  return user;
-};
 
 const loginUser = async (data: ILoginUser): Promise<ILoginUserResponse> => {
   const { email, password } = data;
@@ -124,7 +95,6 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
 };
 
 export const AuthService = {
-  createUser,
   loginUser,
   refreshToken,
 };

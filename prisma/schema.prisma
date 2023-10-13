@@ -44,62 +44,38 @@ model Category {
 }
 
 model Service {
-  id                String             @id @default(uuid())
+  id                String   @id @default(uuid())
   categoryId        String
   name              String
+  validFrom         DateTime @map("valid_from")
+  validTill         DateTime @map("valid_till")
   location          String
   price             Int
-  person            String
+  person            Int
+  isBooked          Boolean  @default(false)
   duration          String
   description       String
   facilities        String?
-  whyChooseUs       String?
+  whyChooseUs       String?  @map("why_choose_us")
   image             String
-  availableServices AvailableService[]
+  availableQunatity Int      @map("available_quantity")
   reviews           Review[]
-  categorires       Category           @relation(fields: [categoryId], references: [id])
-  createdAt         DateTime           @default(now()) @map("created_at")
-  updatedAt         DateTime           @updatedAt @map("updated_at")
+  categorires       Category @relation(fields: [categoryId], references: [id])
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
 
   @@map("service")
 }
 
-model TimeSlots {
-  id               String             @id @default(uuid())
-  slotTime         DateTime           @map("slot_time")
-  availableServices AvailableService[]
-  createdAt        DateTime           @default(now()) @map("created_at")
-  updatedAt        DateTime           @updatedAt @map("updated_at")
-}
-
-model AvailableService {
-  id             String    @id @default(uuid())
-  slotDate       DateTime  @map("slot_date")
-  availableSeats Int       @map("available_seats")
-  isBooked       Boolean   @default(false) @map("is_booked")
-  serviceId      String    @map("service_id")
-  service        Service   @relation(fields: [serviceId], references: [id])
-  slotId         String    @map("slot_id")
-  slot           TimeSlots @relation(fields: [slotId], references: [id])
-  createdAt      DateTime  @default(now()) @map("created_at")
-  updatedAt      DateTime  @updatedAt @map("updated_at")
-  Booking        Booking[]
-
-  @@unique([slotId, serviceId, slotDate])
-  @@map("available_services")
-}
-
 model Booking {
-  id                 String           @id @default(uuid())
-  userId             String
-  serviceId          String
-  date               DateTime
-  status             String
-  user               User             @relation(fields: [userId], references: [id])
-  availableServiceId String           @map("available_service_id")
-  availableService   AvailableService @relation(fields: [availableServiceId], references: [id])
-  createdAt          DateTime         @default(now()) @map("created_at")
-  updatedAt          DateTime         @updatedAt @map("updated_at")
+  id        String   @id @default(uuid())
+  userId    String
+  serviceId String
+  date      DateTime
+  status    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("booking")
 }
@@ -120,7 +96,7 @@ model Review {
 
 model Blog {
   id          String   @id @default(uuid())
-  contentType String
+  contentType String   @map("content_type")
   title       String
   content     String
   createdAt   DateTime @default(now()) @map("created_at")

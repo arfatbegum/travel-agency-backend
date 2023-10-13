@@ -23,7 +23,7 @@ const createService = async (data: Service): Promise<Service> => {
 const getAllServices = async (
   filters: IServiceFilterRequest,
   options: IPaginationOptions
-): Promise<Service[] | null> => {
+): Promise<Service[] | any> => {
   const { limit, page, skip } = paginationHelpers.calculatePagination(options);
   const { searchTerm, ...filterData } = filters;
 
@@ -65,7 +65,6 @@ const getAllServices = async (
 
   const result = await prisma.service.findMany({
     include: {
-      availableServices: true,
       reviews: true,
     },
     where: whereConditions,

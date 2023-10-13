@@ -1,0 +1,12 @@
+Sat Oct 14 2023 0:10:3 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "body",
+      "person"
+    ],
+    "message": "Expected string, received number"
+  }
+]

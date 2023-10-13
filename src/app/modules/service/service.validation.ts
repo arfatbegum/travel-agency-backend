@@ -14,7 +14,7 @@ const createServiceZodSchema = z.object({
     price: z.number({
       required_error: 'Password is required ',
     }),
-    person: z.string({
+    person: z.number({
       required_error: 'person is required ',
     }),
     duration: z.string({
@@ -64,7 +64,7 @@ const updateServiceZodSchema = z.object({
       })
       .optional(),
     person: z
-      .string({
+      .number({
         required_error: 'person is required ',
       })
       .optional(),

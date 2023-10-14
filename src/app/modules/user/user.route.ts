@@ -16,30 +16,44 @@ router.post(
 
 router.get(
     '/profile',
-    auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
+    auth(ENUM_USER_ROLE.USER),
     UserController.getMyProfile
+);
+
+router.patch(
+  '/profile',
+  auth(ENUM_USER_ROLE.USER),
+  validateRequest(UserValidation.updateUserZodSchema),
+  UserController.updateMyProfile
+);
+
+router.get(
+  '/my-booking',
+  auth(ENUM_USER_ROLE.USER),
+  UserController.getMyBooking
 );
   
 router.get(
   '/',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   UserController.getAllUsers
 );
+
 router.get(
   '/:id',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   UserController.getSingleUser
 );
 
 router.patch(
   '/:id',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   validateRequest(UserValidation.updateUserZodSchema),
   UserController.updateUser
 );
 router.delete(
   '/:id',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   UserController.deleteAUser
 );
 

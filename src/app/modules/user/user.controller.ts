@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import httpStatus from "http-status";
-import catchAsync from "../../../shared/catchAsync";
-import { UserService } from "./user.service";
-import sendResponse from "../../../shared/sendResponse";
+import { Request, Response } from 'express';
+import httpStatus from 'http-status';
+import catchAsync from '../../../shared/catchAsync';
+import sendResponse from '../../../shared/sendResponse';
+import { UserService } from './user.service';
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
   const { ...userData } = req.body;
@@ -22,7 +22,7 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Users retrieved successfully",
+    message: 'Users retrieved successfully',
     data: result,
   });
 });
@@ -34,7 +34,7 @@ const getSingleUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "User getched successfully",
+    message: 'User getched successfully',
     data: result,
   });
 });
@@ -48,7 +48,7 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User updated successfully !",
+    message: 'User updated successfully !',
     data: result,
   });
 });
@@ -60,7 +60,7 @@ const deleteAUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "User deleted successfully",
+    message: 'User deleted successfully',
     data: result,
   });
 });
@@ -74,7 +74,38 @@ const getMyProfile = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "My Profile retrieved successfully",
+    message: 'My Profile retrieved successfully',
+    data: result,
+  });
+});
+
+const updateMyProfile = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.user?.userId;
+  const userRole = req.user?.role;
+  const updatedData = req.body;
+
+  const result = await UserService.updateMyProfile(
+    userId,
+    userRole,
+    updatedData
+  );
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'My Profile retrieved successfully',
+    data: result,
+  });
+});
+
+const getMyBooking = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.user?.userId;
+  const result = await UserService.getMyBooking(userId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'My Booking retrieved successfully',
     data: result,
   });
 });
@@ -85,5 +116,7 @@ export const UserController = {
   getSingleUser,
   updateUser,
   deleteAUser,
-  getMyProfile
+  getMyProfile,
+  updateMyProfile,
+  getMyBooking,
 };

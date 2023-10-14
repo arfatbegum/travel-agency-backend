@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable no-unused-vars */
-import { Role, User } from '@prisma/client';
+import { Booking, Role, User } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 import prisma from '../../../shared/prisma';
@@ -88,6 +89,36 @@ const getMyProfile = async (
   return result;
 };
 
+const updateMyProfile = async (
+  userId: string,
+  userRole: Role,
+  payload: Partial<User>
+): Promise<User | null> => {
+  const result = await prisma.user.update({
+    where: {
+      id: userId,
+      role: userRole,
+    },
+    data: payload,
+  });
+  return result;
+};
+
+const getMyBooking = async (
+  userId: string
+): Promise<Booking[] | null> => {
+  const result = await prisma.booking.findMany({
+    where: {
+      userId: userId
+    },
+    include: {
+      service: true,
+      user: true,
+    },
+  });
+  return result;
+};
+
 export const UserService = {
   createUser,
   getAllUsers,
@@ -95,4 +126,6 @@ export const UserService = {
   updateUser,
   deleteAUser,
   getMyProfile,
+  updateMyProfile,
+  getMyBooking,
 };

@@ -1,6 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
-import { Category } from '@prisma/client';
+import { Category, Prisma } from '@prisma/client';
+import { paginationHelpers } from '../../../helpers/paginationHelper';
+import { IGenericResponse } from '../../../interfaces/common';
+import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
+import { categoryFieldSearchableFields } from './category.constant';
+import { ICategoryFilterRequest } from './category.interface';
 
 const createCategory = async (data: Category): Promise<Category> => {
   const result = await prisma.category.create({
@@ -9,8 +15,62 @@ const createCategory = async (data: Category): Promise<Category> => {
   return result;
 };
 
-const getAllCategories = async () => {
-  return await prisma.category.findMany();
+const getAllCategories = async (
+  filters: ICategoryFilterRequest,
+  options: IPaginationOptions
+): Promise<IGenericResponse<Category[]>> => {
+  const { page, limit, skip } = paginationHelpers.calculatePagination(options);
+  const { searchTerm, ...filterData } = filters;
+  const andConditons = [];
+
+  if (searchTerm) {
+    andConditons.push({
+      OR: categoryFieldSearchableFields.map(field => ({
+        [field]: {
+          contains: searchTerm,
+          mode: 'insensitive',
+        },
+      })),
+    });
+  }
+
+  if (Object.keys(filterData).length > 0) {
+    andConditons.push({
+      AND: Object.keys(filterData).map(key => ({
+        [key]: {
+          equals: (filterData as any)[key],
+        },
+      })),
+    });
+  }
+
+  const whereConditons: Prisma.CategoryWhereInput =
+    andConditons.length > 0 ? { AND: andConditons } : {};
+
+  const result = await prisma.category.findMany({
+    where: whereConditons,
+    skip,
+    take: limit,
+    orderBy:
+      options.sortBy && options.sortOrder
+        ? {
+            [options.sortBy]: options.sortOrder,
+          }
+        : {
+            createdAt: 'desc',
+          },
+  });
+
+  const total = await prisma.category.count();
+
+  return {
+    meta: {
+      total,
+      page,
+      limit,
+    },
+    data: result,
+  };
 };
 
 const getSingleCategory = async (id: string): Promise<Category | null> => {

@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
+import { paginationFields } from '../../../constants/pagination';
 import catchAsync from '../../../shared/catchAsync';
+import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
+import { faqFilterableFields } from './faq.constant';
 import { FaqService } from './faq.service';
 
 const createFaq = catchAsync(async (req: Request, res: Response) => {
@@ -17,7 +20,9 @@ const createFaq = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllFaq = catchAsync(async (req: Request, res: Response) => {
-  const result = await FaqService.getAllFaq();
+  const filters = pick(req.query, faqFilterableFields);
+  const options = pick(req.query, paginationFields);
+  const result = await FaqService.getAllFaq(filters, options);
 
   sendResponse(res, {
     success: true,

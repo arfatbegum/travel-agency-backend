@@ -1,6 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
-import { FAQ } from '@prisma/client';
+import { FAQ, Prisma } from '@prisma/client';
+import { paginationHelpers } from '../../../helpers/paginationHelper';
+import { IGenericResponse } from '../../../interfaces/common';
+import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
+import { faqFieldSearchableFields } from './faq.constant';
+import { IFAQFilterRequest } from './faq.interface';
 
 const createFaq = async (data: FAQ): Promise<FAQ> => {
   const result = await prisma.fAQ.create({
@@ -9,8 +15,62 @@ const createFaq = async (data: FAQ): Promise<FAQ> => {
   return result;
 };
 
-const getAllFaq = async () => {
-  return await prisma.fAQ.findMany();
+const getAllFaq = async (
+  filters: IFAQFilterRequest,
+  options: IPaginationOptions
+): Promise<IGenericResponse<FAQ[]>> => {
+  const { page, limit, skip } = paginationHelpers.calculatePagination(options);
+  const { searchTerm, ...filterData } = filters;
+  const andConditons = [];
+
+  if (searchTerm) {
+    andConditons.push({
+      OR: faqFieldSearchableFields.map(field => ({
+        [field]: {
+          contains: searchTerm,
+          mode: 'insensitive',
+        },
+      })),
+    });
+  }
+
+  if (Object.keys(filterData).length > 0) {
+    andConditons.push({
+      AND: Object.keys(filterData).map(key => ({
+        [key]: {
+          equals: (filterData as any)[key],
+        },
+      })),
+    });
+  }
+
+  const whereConditons: Prisma.FAQWhereInput =
+    andConditons.length > 0 ? { AND: andConditons } : {};
+
+  const result = await prisma.fAQ.findMany({
+    where: whereConditons,
+    skip,
+    take: limit,
+    orderBy:
+      options.sortBy && options.sortOrder
+        ? {
+            [options.sortBy]: options.sortOrder,
+          }
+        : {
+            createdAt: 'desc',
+          },
+  });
+
+  const total = await prisma.fAQ.count();
+
+  return {
+    meta: {
+      total,
+      page,
+      limit,
+    },
+    data: result,
+  };
 };
 
 const getSingleFaq = async (id: string): Promise<FAQ | null> => {

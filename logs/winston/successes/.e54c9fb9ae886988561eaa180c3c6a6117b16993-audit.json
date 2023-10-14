@@ -79,6 +79,16 @@
             "date": 1697241827236,
             "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-14-10-03-success.log",
             "hash": "659f5f837a0376c78ee835f66d3d4eb1ecc4a7acedcbceac151ea4b5ca84088a"
+        },
+        {
+            "date": 1697294932804,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-14-10-17-success.log",
+            "hash": "0a400cd7c9d5dc21a325a0225ed09ca22ddc755ba0bb090d80d7f183c3290108"
+        },
+        {
+            "date": 1697295637406,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-14-10-18-success.log",
+            "hash": "74a40a2e36cfad7bf64226a6280246f2b469fc024ccab266285556477523ecde"
         }
     ],
     "hashType": "sha256"

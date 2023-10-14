@@ -1,0 +1,73 @@
+Sat Oct 14 2023 17:53:10 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "name"
+    ],
+    "message": "Name is required "
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "location"
+    ],
+    "message": "location is required "
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "categoryId"
+    ],
+    "message": "category is required "
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "price"
+    ],
+    "message": "Password is required "
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "person"
+    ],
+    "message": "person is required "
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "duration"
+    ],
+    "message": "duration is required "
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "description"
+    ],
+    "message": "duration is required "
+  }
+]
+Sat Oct 14 2023 17:53:28 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized

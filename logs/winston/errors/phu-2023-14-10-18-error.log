@@ -29,3 +29,4 @@ Invalid `prisma.news.create()` invocation:
 
 Foreign key constraint failed on the field: `news_userId_fkey (index)`
 Sat Oct 14 2023 18:39:41 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Unexpected token } in JSON at position 371
+Sat Oct 14 2023 18:59:47 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Unexpected token } in JSON at position 371

@@ -13,35 +13,39 @@ router.post(
   auth(ENUM_USER_ROLE.USER),
   BookingController.createBooking
 );
-router.get('/', BookingController.getAllBooking);
-router.get('/:id', BookingController.getSingleBooking);
+router.get('/', auth(ENUM_USER_ROLE.ADMIN), BookingController.getAllBooking);
+router.get(
+  '/:id',
+  auth(ENUM_USER_ROLE.ADMIN),
+  BookingController.getSingleBooking
+);
 router.patch(
   '/:id',
   validateRequest(BookingValidation.updateBookingZodSchema),
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   BookingController.updateBooking
 );
 router.patch(
   '/cancel-booking/:id',
   validateRequest(BookingValidation.updateBookingZodSchema),
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
   BookingController.cancelBooking
 );
 router.patch(
   '/confirm-booking/:id',
   validateRequest(BookingValidation.updateBookingZodSchema),
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   BookingController.confirmBooking
 );
 router.patch(
   '/complete-booking/:id',
   validateRequest(BookingValidation.updateBookingZodSchema),
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   BookingController.completedBooking
 );
 router.delete(
   '/',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   BookingController.deleteBooking
 );
 

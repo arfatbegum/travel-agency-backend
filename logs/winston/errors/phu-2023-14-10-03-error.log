@@ -1,0 +1,37 @@
+Sat Oct 14 2023 3:2:56 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.booking.findMany()` invocation:
+
+{
+  include: {
+    user: true,
+    service: true
+  },
+  where: {},
+  skip: 0,
+  take: 2,
+  orderBy: {
+    service: "asc"
+             ~~~~~
+  }
+}
+
+Argument `service`: Invalid value provided. Expected ServiceOrderByWithRelationInput, provided String.
+Sat Oct 14 2023 3:13:40 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.booking.findMany()` invocation:
+
+{
+  include: {
+    user: true,
+    service: true
+  },
+  where: {},
+  skip: 0,
+  take: 2,
+  orderBy: {
+    service: "asc"
+             ~~~~~
+  }
+}
+
+Argument `service`: Invalid value provided. Expected ServiceOrderByWithRelationInput, provided String.
+Sat Oct 14 2023 3:25:17 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Booking has cancelled

@@ -14,7 +14,6 @@ const updateCategoryZodSchema = z.object({
       .string({
         required_error: 'Name is required ',
       })
-      .optional()
       .optional(),
   }),
 });

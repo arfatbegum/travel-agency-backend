@@ -21,6 +21,7 @@ model User {
   profileImg String
   bookings   Booking[]
   reviews    Review[]
+  news       News[]
   createdAt  DateTime  @default(now()) @map("created_at")
   updatedAt  DateTime  @updatedAt @map("updated_at")
 
@@ -99,24 +100,40 @@ model Booking {
 model Review {
   id        String   @id @default(uuid())
   userId    String
-  serviceId String
+  serviceId String?
+  newsId    String?
   rating    Int
   comment   String
   user      User     @relation(fields: [userId], references: [id])
-  service   Service  @relation(fields: [serviceId], references: [id])
+  service   Service? @relation(fields: [serviceId], references: [id])
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+  News      News?    @relation(fields: [newsId], references: [id])
 
   @@map("review")
 }
 
-model Blog {
+model News {
   id          String   @id @default(uuid())
+  userId      String
+  User        User     @relation(fields: [userId], references: [id])
   contentType String   @map("content_type")
   title       String
   content     String
+  date        DateTime
+  reviews     Review[]
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
-  @@map("blog")
+  @@map("news")
+}
+
+model FAQ {
+  id        String   @id @default(uuid())
+  question  String
+  answer    String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("faq")
 }

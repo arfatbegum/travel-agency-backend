@@ -1,0 +1,31 @@
+Sat Oct 14 2023 18:33:29 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "rating"
+    ],
+    "message": "Rating is required "
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "comment"
+    ],
+    "message": "comment is required "
+  }
+]
+Sat Oct 14 2023 18:34:38 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Sat Oct 14 2023 18:35:0 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ jwt expired
+Sat Oct 14 2023 18:36:10 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ jwt expired
+Sat Oct 14 2023 18:37:47 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.news.create()` invocation:
+
+
+Foreign key constraint failed on the field: `news_userId_fkey (index)`
+Sat Oct 14 2023 18:39:41 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Unexpected token } in JSON at position 371

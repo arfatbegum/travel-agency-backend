@@ -128,8 +128,6 @@ const getAllAdmins = async (
 };
 
 
-
-
 const getSingleAdmin = async (id: string): Promise<User | null> => {
   const result = await prisma.user.findUnique({
     where: { id },

@@ -1,8 +1,11 @@
-import { Request, Response } from "express";
-import httpStatus from "http-status";
-import catchAsync from "../../../shared/catchAsync";
-import sendResponse from "../../../shared/sendResponse";
-import { AdminService } from "./admin.service";
+import { Request, Response } from 'express';
+import httpStatus from 'http-status';
+import { paginationFields } from '../../../constants/pagination';
+import catchAsync from '../../../shared/catchAsync';
+import pick from '../../../shared/pick';
+import sendResponse from '../../../shared/sendResponse';
+import { adminFilterableFields } from './admin.constant';
+import { AdminService } from './admin.service';
 
 const createAdmin = catchAsync(async (req: Request, res: Response) => {
   const { ...userData } = req.body;
@@ -11,18 +14,20 @@ const createAdmin = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'User created successfully!',
+    message: 'Admin created successfully!',
     data: result,
   });
 });
 
 const getAllAdmins = catchAsync(async (req: Request, res: Response) => {
-  const result = await AdminService.getAllAdmins();
+  const filters = pick(req.query, adminFilterableFields);
+  const options = pick(req.query, paginationFields);
+  const result = await AdminService.getAllAdmins(filters, options);
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Users retrieved successfully",
+    message: 'Admins retrieved successfully',
     data: result,
   });
 });
@@ -34,7 +39,7 @@ const getSingleAdmin = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "User getched successfully",
+    message: 'Admin fetched successfully',
     data: result,
   });
 });
@@ -48,7 +53,7 @@ const updateAdmin = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User updated successfully !",
+    message: 'Admin updated successfully !',
     data: result,
   });
 });
@@ -60,7 +65,7 @@ const deleteAdmin = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "User deleted successfully",
+    message: 'Admin deleted successfully',
     data: result,
   });
 });
@@ -74,7 +79,26 @@ const getMyProfile = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "My Profile retrieved successfully",
+    message: 'My Profile retrieved successfully',
+    data: result,
+  });
+});
+
+const updateMyProfile = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.user?.userId;
+  const userRole = req.user?.role;
+  const updatedData = req.body;
+
+  const result = await AdminService.updateMyProfile(
+    userId,
+    userRole,
+    updatedData
+  );
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'My Profile Updated successfully',
     data: result,
   });
 });
@@ -85,5 +109,6 @@ export const AdminController = {
   getSingleAdmin,
   updateAdmin,
   deleteAdmin,
-  getMyProfile
+  getMyProfile,
+  updateMyProfile
 };

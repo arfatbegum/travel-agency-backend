@@ -17,8 +17,15 @@ router.post(
 
 router.get(
     '/profile',
-    auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+    auth(ENUM_USER_ROLE.ADMIN),
     AdminController.getMyProfile
+);
+
+router.patch(
+  '/profile',
+  auth(ENUM_USER_ROLE.ADMIN),
+  validateRequest(AdminValidation.updateAdminZodSchema),
+  AdminController.updateMyProfile
 );
   
 router.get(
@@ -34,7 +41,7 @@ router.get(
 
 router.patch(
   '/:id',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(AdminValidation.updateAdminZodSchema),
   AdminController.updateAdmin
 );

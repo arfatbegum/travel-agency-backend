@@ -10,7 +10,7 @@ const router = express.Router();
 router.post(
   '/',
   validateRequest(ServiceValidation.createServiceZodSchema),
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   serviceController.createService
 );
 
@@ -21,13 +21,13 @@ router.get('/:id', serviceController.getSingleService);
 router.patch(
   '/:id',
   validateRequest(ServiceValidation.updateServiceZodSchema),
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   serviceController.updateService
 );
 
 router.delete(
   '/:id',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN),
   serviceController.deleteService
 );
 

@@ -25,7 +25,8 @@ const getAllBooking = catchAsync(async (req, res) => {
     statusCode: httpStatus.OK,
     success: true,
     message: 'All Bookings fetched successfully',
-    data: result,
+    meta: result.meta,
+    data: result.data,
   });
 });
 

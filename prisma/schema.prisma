@@ -116,11 +116,12 @@ model Review {
 model News {
   id          String   @id @default(uuid())
   userId      String
-  User        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
   contentType String   @map("content_type")
   title       String
   content     String
   date        DateTime
+  image       String
   reviews     Review[]
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")

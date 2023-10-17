@@ -12,9 +12,9 @@ const createUserZodSchema = z.object({
     password: z.string({
       required_error: "Password is required ",
     }),
-      role: z.enum([...role] as [string, ...string[]]),
+      role: z.enum([...role] as [string, ...string[]]).optional(),
     contactNo: z.string({
-      required_error: "Password is required ",
+      required_error: "Contact No is required ",
     }),
     address: z.string({
       required_error: "Address is required ",
@@ -36,7 +36,7 @@ const updateUserZodSchema = z.object({
     password: z.string({
       required_error: "Password is required ",
     }).optional(),
-      role: z.enum([...role] as [string, ...string[]]),
+      role: z.enum([...role] as [string, ...string[]]).optional(),
     contactNo: z.string({
       required_error: "Contact No is required ",
     }).optional(),

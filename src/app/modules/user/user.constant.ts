@@ -5,7 +5,7 @@ export const userFilterableFields: string[] = [
   ];
   
   export const userFieldSearchableFields: string[] = [
-    'name, email',
+    'name', 'email',
     'contactNo',
   ];
   

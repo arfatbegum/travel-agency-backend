@@ -22,7 +22,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
     success: true,
     statusCode: 200,
     message: 'User signin successfully!',
-    token: others.accessToken,
+    data: others,
   });
 });
 

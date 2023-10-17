@@ -1,8 +1,7 @@
 export const adminFilterableFields: string[] = ['searchTerm', 'bookingId'];
 
 export const adminFieldSearchableFields: string[] = [
-  'name, email',
-  'contactNo',
+  'name', 'email', 'contactNo',
 ];
 
 export const adminRelationalFields: string[] = ['bookingId'];

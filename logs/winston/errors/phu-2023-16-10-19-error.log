@@ -1,0 +1,12 @@
+Mon Oct 16 2023 19:11:19 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "expected": "'super_admin' | 'admin' | 'user'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "Required"
+  }
+]

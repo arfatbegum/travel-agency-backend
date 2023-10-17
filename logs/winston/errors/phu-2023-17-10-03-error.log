@@ -1,0 +1,168 @@
+Tue Oct 17 2023 3:29:31 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.news.findMany()` invocation:
+
+{
+  include: {
+    reviews: true,
+    user: true
+  },
+  where: {
+    AND: [
+      {
+        OR: [
+          {
+            title: {
+              contains: "art",
+              mode: "insensitive"
+            }
+          },
+          {
+            contentType: {
+              contains: "art",
+              mode: "insensitive"
+            }
+          },
+          {
+            date: {
+              contains: "art",
+              mode: "insensitive"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  skip: 0,
+  take: 10,
+  orderBy: {
+    createdAt: "desc"
+  }
+}
+
+Unknown argument `contains`. Available options are marked with ?.
+Tue Oct 17 2023 3:30:58 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.news.findMany()` invocation:
+
+{
+  include: {
+    reviews: true,
+    user: true
+  },
+  where: {
+    AND: [
+      {
+        OR: [
+          {
+            title: {
+              contains: "tarve",
+              mode: "insensitive"
+            }
+          },
+          {
+            contentType: {
+              contains: "tarve",
+              mode: "insensitive"
+            }
+          },
+          {
+            date: {
+              contains: "tarve",
+              mode: "insensitive"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  skip: 0,
+  take: 10,
+  orderBy: {
+    createdAt: "desc"
+  }
+}
+
+Unknown argument `contains`. Available options are marked with ?.
+Tue Oct 17 2023 3:30:59 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.news.findMany()` invocation:
+
+{
+  include: {
+    reviews: true,
+    user: true
+  },
+  where: {
+    AND: [
+      {
+        OR: [
+          {
+            title: {
+              contains: "tarvel",
+              mode: "insensitive"
+            }
+          },
+          {
+            contentType: {
+              contains: "tarvel",
+              mode: "insensitive"
+            }
+          },
+          {
+            date: {
+              contains: "tarvel",
+              mode: "insensitive"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  skip: 0,
+  take: 10,
+  orderBy: {
+    createdAt: "desc"
+  }
+}
+
+Unknown argument `contains`. Available options are marked with ?.
+Tue Oct 17 2023 3:31:6 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.news.findMany()` invocation:
+
+{
+  include: {
+    reviews: true,
+    user: true
+  },
+  where: {
+    AND: [
+      {
+        OR: [
+          {
+            title: {
+              contains: "t",
+              mode: "insensitive"
+            }
+          },
+          {
+            contentType: {
+              contains: "t",
+              mode: "insensitive"
+            }
+          },
+          {
+            date: {
+              contains: "t",
+              mode: "insensitive"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  skip: 0,
+  take: 10,
+  orderBy: {
+    createdAt: "desc"
+  }
+}
+
+Unknown argument `contains`. Available options are marked with ?.

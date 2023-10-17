@@ -13,6 +13,7 @@ const createNews = async (data: News): Promise<News> => {
     data: data,
     include: {
       reviews: true,
+      user: true,
     },
   });
   return result;
@@ -51,6 +52,10 @@ const getAllNews = async (
     andConditons.length > 0 ? { AND: andConditons } : {};
 
   const result = await prisma.news.findMany({
+    include: {
+      reviews: true,
+      user: true,
+    },
     where: whereConditons,
     skip,
     take: limit,
@@ -83,6 +88,7 @@ const getSingleNews = async (id: string): Promise<News | null> => {
     },
     include: {
       reviews: true,
+      user: true,
     },
   });
   return result;
@@ -103,6 +109,10 @@ const updateNews = async (
 
 const deleteNews = async (id: string): Promise<News | null> => {
   const result = await prisma.news.delete({
+    include: {
+      reviews: true,
+      user: true,
+    },
     where: {
       id,
     },

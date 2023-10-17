@@ -1,7 +1,7 @@
 import express from 'express';
 import { ENUM_USER_ROLE } from '../../../enums/user';
 import auth from '../../middlewares/auth';
-import { SuperAdminController } from './admin.controller';
+import { SuperAdminController } from './superAdmin.controller';
 
 
 const router = express.Router();
@@ -18,4 +18,4 @@ router.patch(
   SuperAdminController.updateMyProfile
 );
 
-export const AdminRoutes = router;
+export const SuperAdminRoutes = router;

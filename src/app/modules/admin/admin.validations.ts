@@ -9,18 +9,14 @@ const createAdminZodSchema = z.object({
     email: z.string({
       required_error: "Phone Number is required ",
     }),
-    password: z.string({
-      required_error: "Password is required ",
-    }),
-      role: z.enum([...role] as [string, ...string[]]),
     contactNo: z.string({
+      required_error: "Phone Number is required ",
+    }),
+    password: z.string({
       required_error: "Password is required ",
     }),
     address: z.string({
       required_error: "Address is required ",
-    }),
-    profileImg: z.string({
-      required_error: "Password is required ",
     }),
    }),
 });
@@ -36,7 +32,7 @@ const updateAdminZodSchema = z.object({
     password: z.string({
       required_error: "Password is required ",
     }).optional(),
-      role: z.enum([...role] as [string, ...string[]]),
+      role: z.enum([...role] as [string, ...string[]]).optional(),
     contactNo: z.string({
       required_error: "Contact No is required ",
     }).optional(),

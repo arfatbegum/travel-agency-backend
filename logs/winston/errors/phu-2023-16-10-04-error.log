@@ -1,0 +1,85 @@
+Mon Oct 16 2023 4:3:25 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+
+Unique constraint failed on the fields: (`email`)
+Mon Oct 16 2023 4:21:4 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "expected": "'super_admin' | 'admin' | 'user'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "Required"
+  }
+]
+Mon Oct 16 2023 4:23:13 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Mon Oct 16 2023 4:23:28 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Mon Oct 16 2023 4:25:18 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Mon Oct 16 2023 4:28:4 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Mon Oct 16 2023 4:31:45 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Mon Oct 16 2023 4:52:19 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Mon Oct 16 2023 4:52:32 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Mon Oct 16 2023 4:53:19 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Mon Oct 16 2023 4:55:59 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.update()` invocation:
+
+{
+  where: {
+    id: "user"
+  },
+  data: {
+    label: "user",
+    ~~~~~
+    value: "user",
+?   id?: String | StringFieldUpdateOperationsInput,
+?   name?: String | StringFieldUpdateOperationsInput,
+?   email?: String | StringFieldUpdateOperationsInput,
+?   password?: String | StringFieldUpdateOperationsInput,
+?   role?: Role | EnumRoleFieldUpdateOperationsInput,
+?   contactNo?: String | StringFieldUpdateOperationsInput,
+?   address?: String | StringFieldUpdateOperationsInput,
+?   profileImg?: String | StringFieldUpdateOperationsInput,
+?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   bookings?: BookingUpdateManyWithoutUserNestedInput,
+?   reviews?: ReviewUpdateManyWithoutUserNestedInput,
+?   news?: NewsUpdateManyWithoutUserNestedInput
+  }
+}
+
+Unknown argument `label`. Did you mean `name`? Available options are marked with ?.

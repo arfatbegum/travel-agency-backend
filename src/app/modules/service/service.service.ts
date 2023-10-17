@@ -66,6 +66,7 @@ const getAllServices = async (
   const result = await prisma.service.findMany({
     include: {
       reviews: true,
+      categorires:true
     },
     where: whereConditions,
     skip,

@@ -1,3 +1,3 @@
-export const newsFilterableFields: string[] = ['searchTerm', 'date'];
+export const newsFilterableFields: string[] = ['searchTerm'];
 
-export const newsFieldSearchableFields: string[] = ['title','contentType','date'];
+export const newsFieldSearchableFields: string[] = ['title','contentType'];

@@ -11,7 +11,7 @@ const createBookingZodSchema = z.object({
     date: z.string({
       required_error: 'Date is required ',
     }),
-    status: z.number({
+    status: z.string({
       required_error: 'Status is required ',
     }),
   }),

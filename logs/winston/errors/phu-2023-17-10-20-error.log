@@ -1,0 +1,25 @@
+Tue Oct 17 2023 20:0:0 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+
+Unique constraint failed on the fields: (`contactNo`)
+Tue Oct 17 2023 20:2:28 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Tue Oct 17 2023 20:4:20 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Unexpected token } in JSON at position 163
+Tue Oct 17 2023 20:5:9 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "body",
+      "status"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+Tue Oct 17 2023 20:6:26 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Tue Oct 17 2023 20:6:28 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Tue Oct 17 2023 20:7:5 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ User does not exist
+Tue Oct 17 2023 20:7:57 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ jwt malformed
+Tue Oct 17 2023 20:8:11 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ jwt expired
+Tue Oct 17 2023 20:9:26 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Error processing payment

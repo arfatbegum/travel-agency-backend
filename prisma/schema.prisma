@@ -69,30 +69,28 @@ model Service {
   @@map("service")
 }
 
-model Payment {
-  id            String   @id @default(uuid())
-  amount        Int
-  paymentDate   DateTime @default(now()) @map("payment_date")
-  paymentStatus String   @map("payment_status")
-  bookingId     String   @unique @map("booking_id")
-  booking       Booking  @relation(fields: [bookingId], references: [id])
-  createdAt     DateTime @default(now()) @map("created_at")
-  updatedAt     DateTime @updatedAt @map("updated_at")
-
-  @@map("payment")
+model PaymentInfo {
+  id                  String    @id @default(uuid())
+  paymentMethod       String
+  paypalEmail         String
+  paymentStatus       String
+  paypalTransactionId String?
+  paypalPayerId       String?
+  Booking             Booking[]
 }
 
 model Booking {
-  id        String   @id @default(uuid())
-  userId    String
-  serviceId String
-  date      DateTime
-  status    String
-  service   Service  @relation(fields: [serviceId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
-  payment   Payment?
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id            String      @id @default(uuid())
+  userId        String
+  paymentInfoId String?
+  serviceId     String
+  date          DateTime
+  status        String
+  service       Service     @relation(fields: [serviceId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
+  paymentInfo   PaymentInfo? @relation(fields: [paymentInfoId], references: [id])
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
 
   @@map("booking")
 }

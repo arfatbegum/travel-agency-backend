@@ -1,0 +1,110 @@
+Tue Oct 17 2023 9:14:49 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.service.create()` invocation:
+
+{
+  data: {
+    availableQunatity: 5,
+    duration: "7 Days",
+    person: 3,
+    price: 4543,
+    location: "Grece",
+    name: "fgdsg",
+    categoryId: "ce75571a-9dbd-48ee-85dc-408e6b88c28a",
+    validFrom: "2023-10-17T06:14:20.939Z",
+    validTill: "2023-10-25T06:14:12.544Z",
+    description: "<p>trweter</p>",
+    facilities: "<p>shfd</p>",
+    whyChooseUs: "<p>sfdd</p>",
++   image: String
+  },
+  include: {
+    categorires: true
+  }
+}
+
+Argument `image` is missing.
+Tue Oct 17 2023 9:24:28 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.service.create()` invocation:
+
+{
+  data: {
+    availableQunatity: 3,
+    duration: "7 Days",
+    person: 5,
+    price: 5,
+    location: "yy",
+    name: "Arfat Begum",
+    validTill: "2023-10-01T06:22:30.084Z",
+    categoryId: "ce75571a-9dbd-48ee-85dc-408e6b88c28a",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/The_Great_Gatsby_Cover_1925_Retouched.jpg/423px-The_Great_Gatsby_Cover_1925_Retouched.jpg",
+    description: "<p>jhk</p>",
+    facilities: "<p>ghkgh</p>",
+    whyChooseUs: "<p>jkjk</p>",
++   validFrom: DateTime
+  },
+  include: {
+    categorires: true
+  }
+}
+
+Argument `validFrom` is missing.
+Tue Oct 17 2023 9:31:46 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "price"
+    ],
+    "message": "Password is required "
+  }
+]
+Tue Oct 17 2023 9:38:4 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "price"
+    ],
+    "message": "Password is required "
+  }
+]
+Tue Oct 17 2023 9:43:33 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "price"
+    ],
+    "message": "Password is required "
+  }
+]
+Tue Oct 17 2023 9:51:12 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "price"
+    ],
+    "message": "Password is required "
+  }
+]
+Tue Oct 17 2023 9:53:46 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "price"
+    ],
+    "message": "Password is required "
+  }
+]

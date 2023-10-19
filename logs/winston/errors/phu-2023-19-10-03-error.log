@@ -1,0 +1,18 @@
+Thu Oct 19 2023 3:5:21 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.paymentInfo.create()` invocation:
+
+{
+  data: {
+    paymentMethod: "paypal",
+    paymentStatus: undefined,
+    paypalPayerId: undefined,
+    paypalTransactionId: undefined,
++   paypalEmail: String
+  }
+}
+
+Argument `paypalEmail` is missing.
+Thu Oct 19 2023 3:19:24 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ PaymentInfo IDs do not match
+Thu Oct 19 2023 3:25:12 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ PaymentInfo IDs do not match
+Thu Oct 19 2023 3:36:40 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ PaymentInfo IDs do not match
+Thu Oct 19 2023 3:41:50 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Payment ID is undefined

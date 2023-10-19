@@ -1,0 +1,5 @@
+Tue Oct 17 2023 23:25:7 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.findMany()` invocation:
+
+
+The column `booking.paypalInfoId` does not exist in the current database.

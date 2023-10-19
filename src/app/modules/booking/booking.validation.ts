@@ -11,9 +11,6 @@ const createBookingZodSchema = z.object({
     date: z.string({
       required_error: 'Date is required ',
     }),
-    status: z.string({
-      required_error: 'Status is required ',
-    }),
   }),
 });
 
@@ -22,7 +19,7 @@ const updateBookingZodSchema = z.object({
         date: z.string({
           required_error: 'Date is required ',
         }).optional(),
-        status: z.number({
+        status: z.string({
           required_error: 'Status is required ',
         }).optional(),
       }),

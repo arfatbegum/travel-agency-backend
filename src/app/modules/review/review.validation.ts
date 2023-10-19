@@ -5,7 +5,7 @@ const createReviewZodSchema = z.object({
     rating: z.number({
       required_error: 'Rating is required ',
     }),
-    comment: z.number({
+    comment: z.string({
       required_error: 'comment is required ',
     }),
   }),
@@ -19,7 +19,7 @@ const updateReviewZodSchema = z.object({
       })
       .optional(),
     comment: z
-      .number({
+      .string({
         required_error: 'comment is required ',
       })
       .optional(),

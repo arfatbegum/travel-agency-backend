@@ -194,6 +194,61 @@
             "date": 1697562384721,
             "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-17-10-20-success.log",
             "hash": "eed4de222a1b3d94f20abc6f9257285c1bb9f6e13396a50be813d82e15d77342"
+        },
+        {
+            "date": 1697643371073,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-18-10-18-success.log",
+            "hash": "9bfde0bd5e1882906e97a0bbb4379c4407b50bbf589850109f266f0ac166f3a6"
+        },
+        {
+            "date": 1697662089207,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-18-10-23-success.log",
+            "hash": "5968a19c7d5cc7d0d26fda6db9672456a083b6d29693f1292cf0d633ca6796b6"
+        },
+        {
+            "date": 1697668324851,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-19-10-01-success.log",
+            "hash": "4cfcd0e4e9525f15e5f4ee638440fafaf53e44028d9eee06b70783f903dc48e7"
+        },
+        {
+            "date": 1697672772958,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-19-10-02-success.log",
+            "hash": "f30c1101c76b12d4b0994059c7cf2603cd953872a6c0bb23d65e7b2b92377b83"
+        },
+        {
+            "date": 1697673690623,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-19-10-03-success.log",
+            "hash": "ade2e7d4b009af16f9dc47b7ef55983120955a8235b849f93f9430e6d2bc31d1"
+        },
+        {
+            "date": 1697679231369,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-19-10-04-success.log",
+            "hash": "60604d5e52cab8b08f99decee1b0dd081a7388ba421c5266410658aafa5dc909"
+        },
+        {
+            "date": 1697680807898,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-19-10-05-success.log",
+            "hash": "c33379d3d06ffa1a9e6e02e01aabd548792b1c7572912afac7bdb6dbeed36f12"
+        },
+        {
+            "date": 1697726400272,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-19-10-17-success.log",
+            "hash": "ddd508bc9f9af6d4aacc47d80fa374d3ae7bed0c609220f65c56703c23036484"
+        },
+        {
+            "date": 1697733000788,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-19-10-19-success.log",
+            "hash": "246b1f95e63f384a30e91db1563c2065139af1a3122bb07b5075f74c8591d8d3"
+        },
+        {
+            "date": 1697736411598,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-19-10-20-success.log",
+            "hash": "3cb609e3cf2a0a660405a7e7f4084cac47faed561ec4a471c06ae99063cfee34"
+        },
+        {
+            "date": 1697738437638,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\successes\\phu-2023-19-10-21-success.log",
+            "hash": "57c048630c66e6a4f5bef477122d2a879a5fc64911fb3bfc747faee5ea52291a"
         }
     ],
     "hashType": "sha256"

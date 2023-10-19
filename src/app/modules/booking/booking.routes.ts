@@ -22,7 +22,7 @@ router.get(
 router.patch(
   '/:id',
   validateRequest(BookingValidation.updateBookingZodSchema),
-  auth(ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
   BookingController.updateBooking
 );
 router.patch(
@@ -43,10 +43,6 @@ router.patch(
   auth(ENUM_USER_ROLE.ADMIN),
   BookingController.completedBooking
 );
-router.delete(
-  '/',
-  auth(ENUM_USER_ROLE.ADMIN),
-  BookingController.deleteBooking
-);
+router.delete('/', auth(ENUM_USER_ROLE.ADMIN), BookingController.deleteBooking);
 
 export const BookingRoutes = router;

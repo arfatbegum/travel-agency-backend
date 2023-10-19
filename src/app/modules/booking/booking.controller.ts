@@ -7,8 +7,8 @@ import { bookingFilterableFields } from './booking.constant';
 import { BookingServices } from './booking.service';
 
 const createBooking = catchAsync(async (req, res) => {
-  const { userId, serviceId, date } = req.body;
-  const result = await BookingServices.createBooking(userId, serviceId, date);
+  const { userId, serviceId, date, paymentInfo } = req.body;
+  const result = await BookingServices.createBooking(userId, serviceId, date,paymentInfo);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

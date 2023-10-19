@@ -17,8 +17,8 @@ model User {
   password   String
   role       Role
   contactNo  String    @unique
-  address    String
-  profileImg String
+  address    String?
+  profileImg String?
   bookings   Booking[]
   reviews    Review[]
   news       News[]
@@ -80,17 +80,17 @@ model PaymentInfo {
 }
 
 model Booking {
-  id            String      @id @default(uuid())
+  id            String       @id @default(uuid())
   userId        String
-  paymentInfoId String?
+  paymentInfoId String
   serviceId     String
   date          DateTime
   status        String
-  service       Service     @relation(fields: [serviceId], references: [id])
-  user          User        @relation(fields: [userId], references: [id])
-  paymentInfo   PaymentInfo? @relation(fields: [paymentInfoId], references: [id])
-  createdAt     DateTime    @default(now()) @map("created_at")
-  updatedAt     DateTime    @updatedAt @map("updated_at")
+  service       Service      @relation(fields: [serviceId], references: [id])
+  user          User         @relation(fields: [userId], references: [id])
+  paymentInfo   PaymentInfo @relation(fields: [paymentInfoId], references: [id])
+  createdAt     DateTime     @default(now()) @map("created_at")
+  updatedAt     DateTime     @updatedAt @map("updated_at")
 
   @@map("booking")
 }

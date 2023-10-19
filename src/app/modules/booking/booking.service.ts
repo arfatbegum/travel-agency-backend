@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Booking, Prisma } from '@prisma/client';
 import paypal from 'paypal-rest-sdk';
@@ -5,6 +6,7 @@ import config from '../../../config';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
+import { refundPayPalPayment } from '../../middlewares/refundPayPalPayment';
 import { IServiceFilterRequest } from '../service/service.interface';
 import {
   bookingFieldSearchableFields,
@@ -12,7 +14,6 @@ import {
   bookingRelationalFieldsMapper,
 } from './booking.constant';
 import { ICreatePaymentJson } from './booking.interface';
-import { refundPayPalPayment } from '../../middlewares/refundPayPalPayment';
 
 // Configure PayPal SDK with your sandbox (test) credentials
 paypal.configure({
@@ -24,20 +25,41 @@ paypal.configure({
 const createBooking = async (
   userId: string,
   serviceId: string,
-  date: string
+  date: string,
+  details: any
 ): Promise<any> => {
+  const { paymentMethod, paypalEmail, paymentStatus, paypalPayerId, paypalTransactionId } = details;
+
   const service = await prisma.service.findUnique({
     where: {
       id: serviceId,
     },
   });
+
   if (!service) {
     throw new Error('This service is not available');
   }
+
   if (service.availableQunatity === 0) {
     throw new Error('This service is fully booked');
   }
+
   const paymentAmount = service.price.toFixed(2).toString();
+
+  // Create a PaymentInfo record
+  const paymentInfo = await prisma.paymentInfo.create({
+    data: {
+      paymentMethod,
+      paypalEmail,
+      paymentStatus,
+      paypalPayerId,
+      paypalTransactionId,
+    },
+  });
+
+  // Retrieve the paymentInfoId
+  const paymentInfoId = paymentInfo.id;
+  console.log(paymentInfoId)
 
   // Define the PayPal payment creation JSON
   const createPaymentJson: ICreatePaymentJson = {
@@ -72,28 +94,18 @@ const createBooking = async (
       });
     }
   );
-
   if (!paymentResponse.links) {
     throw new Error('PayPal links are missing in the response');
   }
 
-  let paymentInfoId: string;
-
-  if (paymentResponse.id) {
-    paymentInfoId = paymentResponse.id;
-  } else {
-    throw new Error('Payment ID is undefined');
-  }
-
-  // Save the PayPal payment ID and payment information to the booking
+  // Save the PayPal payment ID and payment information to the Booking record
   const booking = await prisma.booking.create({
     data: {
       date,
       userId,
       serviceId,
       status: 'processing',
-      paymentInfoId: paymentResponse.id,
-      paypalInfoId: paymentInfoId,
+      paymentInfoId: paymentInfoId,
     },
     include: {
       user: true,
@@ -129,6 +141,7 @@ const createBooking = async (
     paymentResponse,
   };
 };
+
 
 const getAllBooking = async (
   filters: IServiceFilterRequest,
@@ -177,6 +190,7 @@ const getAllBooking = async (
     include: {
       user: true,
       service: true,
+      paymentInfo:true
     },
     where: whereConditions,
     skip,
@@ -237,7 +251,7 @@ const deleteBooking = async (id: string): Promise<Booking> => {
   return result;
 };
 
-const cancelBooking = async (bookingId:string) => {
+const cancelBooking = async (bookingId: string) => {
   const booking = await prisma.booking.findUnique({
     where: {
       id: bookingId,
@@ -256,49 +270,49 @@ const cancelBooking = async (bookingId:string) => {
     throw new Error('Booking has already been completed');
   }
 
-  const cancelledBooking = await prisma.$transaction(async (transactionClient) => {
-    const bookingToCancel = await transactionClient.booking.update({
-      where: {
-        id: bookingId,
-      },
-      data: {
-        status: 'cancelled',
-      },
-    });
-
-    const availableService = await transactionClient.service.findUnique({
-      where: {
-        id: booking.serviceId,
-      },
-    });
-
-    await transactionClient.service.update({
-      where: {
-        id: booking.serviceId,
-      },
-      data: {
-        availableQunatity: {
-          increment: 1,
+  const cancelledBooking = await prisma.$transaction(
+    async transactionClient => {
+      const bookingToCancel = await transactionClient.booking.update({
+        where: {
+          id: bookingId,
         },
-        isBooked:
-          availableService && availableService.availableQunatity + 1 > 0
-            ? false
-            : true,
-      },
-    });
+        data: {
+          status: 'cancelled',
+        },
+      });
 
-    // Initiate the PayPal refund
-    await refundPayPalPayment(booking.paypalInfoId, booking.serviceId);
+      const availableService = await transactionClient.service.findUnique({
+        where: {
+          id: booking.serviceId,
+        },
+      });
 
-    return {
-      booking: bookingToCancel,
-    };
-  });
+      await transactionClient.service.update({
+        where: {
+          id: booking.serviceId,
+        },
+        data: {
+          availableQunatity: {
+            increment: 1,
+          },
+          isBooked:
+            availableService && availableService.availableQunatity + 1 > 0
+              ? false
+              : true,
+        },
+      });
+
+      // Initiate the PayPal refund
+      await refundPayPalPayment(booking.paymentInfoId, booking.serviceId);
+
+      return {
+        booking: bookingToCancel,
+      };
+    }
+  );
 
   return cancelledBooking;
 };
-
-
 
 const confirmBooking = async (bookingId: string): Promise<any> => {
   const booking = await prisma.booking.findUnique({

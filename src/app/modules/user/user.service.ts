@@ -190,6 +190,7 @@ const getMyBooking = async (
     include: {
       service: true,
       user: true,
+      paymentInfo:true
     },
   });
   return result;

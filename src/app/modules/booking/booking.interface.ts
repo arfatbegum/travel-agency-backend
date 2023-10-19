@@ -21,8 +21,7 @@ export type ICreatePaymentJson = {
 }
 
 export type PayPalPayment ={
-    // Define the structure of the PayPal payment here based on the SDK's response.
-    // For example, if 'id' is a required field, define it accordingly.
     id: string;
     payment:string | undefined
+    
   }

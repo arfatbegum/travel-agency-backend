@@ -97,6 +97,14 @@ const getSingleService = async (id: string): Promise<Service | null> => {
     where: {
       id: id,
     },
+    include: {
+      reviews: {
+        include: {
+          user: true 
+        }
+      },
+      categorires: true
+    },
   });
   return result;
 };

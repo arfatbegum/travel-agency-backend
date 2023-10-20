@@ -9,6 +9,7 @@ import { ReviewRoutes } from '../modules/review/review.routes';
 import { NewsRoutes } from '../modules/news/news.routes';
 import { FaqRoutes } from '../modules/faq/faq.routes';
 import { SuperAdminRoutes } from '../modules/super-admin/superAdmin.route';
+import { FeedbackRoutes } from '../modules/feedback/feedback.routes';
 
 const router = express.Router();
 
@@ -52,6 +53,10 @@ const moduleRoutes = [
   {
     path: '/super-admin',
     routes: SuperAdminRoutes,
+  },
+  {
+    path: '/feedback',
+    routes:   FeedbackRoutes,
   },
 ];
 

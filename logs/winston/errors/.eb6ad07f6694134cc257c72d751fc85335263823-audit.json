@@ -314,6 +314,31 @@
             "date": 1697742239439,
             "name": "E:\\travel-agency-backend\\logs\\winston\\errors\\phu-2023-19-10-22-error.log",
             "hash": "9a78306d0f99ead87960066711e702a4780020db8cc6e3006b96876492ebbfcd"
+        },
+        {
+            "date": 1697745757510,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\errors\\phu-2023-19-10-23-error.log",
+            "hash": "7bd1eafb344afc84e9f6ac6364c2fed38a47652ce5445a5c070fcff34b092a67"
+        },
+        {
+            "date": 1697749753855,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\errors\\phu-2023-20-10-00-error.log",
+            "hash": "597797bf56938eed3b6de56e60554a5e7a1d889316d309b836bff2acf6b512b2"
+        },
+        {
+            "date": 1697752894325,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\errors\\phu-2023-20-10-01-error.log",
+            "hash": "bb82a4d41de0df53faabefd68b6c7ff2d88bf2ed7477c90f9646a4d35befb3fb"
+        },
+        {
+            "date": 1697756716193,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\errors\\phu-2023-20-10-02-error.log",
+            "hash": "38736f70adc88fb2f07ac8eb9e078478f8cca0b117bf61bdcd7261362c249f9c"
+        },
+        {
+            "date": 1697760513120,
+            "name": "E:\\travel-agency-backend\\logs\\winston\\errors\\phu-2023-20-10-03-error.log",
+            "hash": "b3ee7e28667716a99854d067f5e8f60ecc1c165a30a6e136dcbcf1490e5e7874"
         }
     ],
     "hashType": "sha256"

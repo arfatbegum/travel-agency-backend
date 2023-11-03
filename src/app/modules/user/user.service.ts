@@ -1,14 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable no-unused-vars */
-import { Booking, Prisma, Role, User } from '@prisma/client';
+import { Booking, Contact, Prisma, Role, User } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
-import prisma from '../../../shared/prisma';
-import { IPaginationOptions } from '../../../interfaces/pagination';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
+import { IPaginationOptions } from '../../../interfaces/pagination';
+import prisma from '../../../shared/prisma';
+import {
+  userFieldSearchableFields,
+  userFilterableFields,
+  userRelationalFieldsMapper,
+} from './user.constant';
 import { IUserFilterRequest } from './user.interface';
-import { userFieldSearchableFields, userFilterableFields, userRelationalFieldsMapper } from './user.constant';
 
 const createUser = async (data: User): Promise<User> => {
   const { name, email, password, contactNo, address, profileImg } = data;
@@ -48,7 +52,7 @@ const getAllUsers = async (
 
   if (searchTerm) {
     andConditions.push({
-      OR: userFieldSearchableFields.map((field) => ({
+      OR: userFieldSearchableFields.map(field => ({
         [field]: {
           contains: searchTerm,
           mode: 'insensitive',
@@ -59,7 +63,7 @@ const getAllUsers = async (
 
   if (Object.keys(filterData).length > 0) {
     andConditions.push({
-      AND: Object.keys(filterData).map((key) => {
+      AND: Object.keys(filterData).map(key => {
         if (userFilterableFields.includes(key)) {
           return {
             [userRelationalFieldsMapper[key]]: {
@@ -83,7 +87,7 @@ const getAllUsers = async (
   const result = await prisma.user.findMany({
     include: {
       reviews: true,
-      bookings:true
+      bookings: true,
     },
     where: {
       AND: [
@@ -180,17 +184,27 @@ const updateMyProfile = async (
   return result;
 };
 
-const getMyBooking = async (
-  userId: string
-): Promise<Booking[] | null> => {
+const getMyBooking = async (userId: string): Promise<Booking[] | null> => {
   const result = await prisma.booking.findMany({
     where: {
-      userId: userId
+      userId: userId,
     },
     include: {
-      service: true,
+      package: true,
       user: true,
-      paymentInfo:true
+      paymentInfo: true,
+    },
+  });
+  return result;
+};
+
+const getMyEnquiry = async (userId: string): Promise<Contact[] | null> => {
+  const result = await prisma.contact.findMany({
+    where: {
+      userId: userId,
+    },
+    include: {
+      user: true,
     },
   });
   return result;
@@ -205,4 +219,5 @@ export const UserService = {
   getMyProfile,
   updateMyProfile,
   getMyBooking,
+  getMyEnquiry,
 };

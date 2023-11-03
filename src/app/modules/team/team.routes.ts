@@ -14,6 +14,7 @@ router.get(
 
 router.get(
   '/:id',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   TeamController.getSingleTeam
 );
 

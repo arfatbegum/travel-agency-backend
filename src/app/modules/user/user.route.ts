@@ -8,17 +8,12 @@ import { UserValidation } from './user.validations';
 const router = express.Router();
 
 router.post(
-  "/register",
+  '/register',
   validateRequest(UserValidation.createUserZodSchema),
   UserController.createUser
 );
 
-
-router.get(
-    '/profile',
-    auth(ENUM_USER_ROLE.USER),
-    UserController.getMyProfile
-);
+router.get('/profile', auth(ENUM_USER_ROLE.USER), UserController.getMyProfile);
 
 router.patch(
   '/profile',
@@ -32,18 +27,16 @@ router.get(
   auth(ENUM_USER_ROLE.USER),
   UserController.getMyBooking
 );
-  
-router.get(
-  '/',
-  auth(ENUM_USER_ROLE.ADMIN),
-  UserController.getAllUsers
-);
 
 router.get(
-  '/:id',
-  auth(ENUM_USER_ROLE.ADMIN),
-  UserController.getSingleUser
+  '/my-enquiry',
+  auth(ENUM_USER_ROLE.USER),
+  UserController.getMyEnquiry
 );
+
+router.get('/', auth(ENUM_USER_ROLE.ADMIN), UserController.getAllUsers);
+
+router.get('/:id', auth(ENUM_USER_ROLE.ADMIN), UserController.getSingleUser);
 
 router.patch(
   '/:id',
@@ -51,10 +44,6 @@ router.patch(
   validateRequest(UserValidation.updateUserZodSchema),
   UserController.updateUser
 );
-router.delete(
-  '/:id',
-  auth(ENUM_USER_ROLE.ADMIN),
-  UserController.deleteAUser
-);
+router.delete('/:id', auth(ENUM_USER_ROLE.ADMIN), UserController.deleteAUser);
 
 export const UserRoutes = router;

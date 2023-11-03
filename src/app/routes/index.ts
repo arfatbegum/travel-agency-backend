@@ -3,14 +3,15 @@ import { AdminRoutes } from '../modules/admin/admin.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { BookingRoutes } from '../modules/booking/booking.routes';
 import { CategoryRoutes } from '../modules/category/category.routes';
+import { ContactRoutes } from '../modules/contact/contact.routes';
 import { FaqRoutes } from '../modules/faq/faq.routes';
 import { FeedbackRoutes } from '../modules/feedback/feedback.routes';
 import { NewsRoutes } from '../modules/news/news.routes';
+import { PackageRoutes } from '../modules/package/package.routes';
 import { ReviewRoutes } from '../modules/review/review.routes';
 import { SuperAdminRoutes } from '../modules/super-admin/superAdmin.route';
-import { UserRoutes } from '../modules/user/user.route';
-import { PackageRoutes } from '../modules/package/package.routes';
 import { TeamRoutes } from '../modules/team/team.routes';
+import { UserRoutes } from '../modules/user/user.route';
 
 const router = express.Router();
 
@@ -42,6 +43,10 @@ const moduleRoutes = [
   {
     path: '/team',
     routes: TeamRoutes,
+  },
+  {
+    path: '/contact',
+    routes: ContactRoutes,
   },
   {
     path: '/review',

@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import catchAsync from '../../../shared/catchAsync';
-import sendResponse from '../../../shared/sendResponse';
-import { UserService } from './user.service';
 import { paginationFields } from '../../../constants/pagination';
-import { userFilterableFields } from './user.constant';
+import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
+import sendResponse from '../../../shared/sendResponse';
+import { userFilterableFields } from './user.constant';
+import { UserService } from './user.service';
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
   const { ...userData } = req.body;
@@ -116,6 +116,18 @@ const getMyBooking = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getMyEnquiry = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.user?.userId;
+  const result = await UserService.getMyEnquiry(userId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'My Enquiry retrieved successfully',
+    data: result,
+  });
+});
+
 export const UserController = {
   createUser,
   getAllUsers,
@@ -125,4 +137,5 @@ export const UserController = {
   getMyProfile,
   updateMyProfile,
   getMyBooking,
+  getMyEnquiry,
 };

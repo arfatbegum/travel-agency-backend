@@ -7,8 +7,14 @@ import { bookingFilterableFields } from './booking.constant';
 import { BookingServices } from './booking.service';
 
 const createBooking = catchAsync(async (req, res) => {
-  const { userId, serviceId, date, paymentInfo } = req.body;
-  const result = await BookingServices.createBooking(userId, serviceId, date,paymentInfo);
+  const { userId, packageId, date, adult, paymentInfo } = req.body;
+  const result = await BookingServices.createBooking(
+    userId,
+    packageId,
+    date,
+    adult,
+    paymentInfo
+  );
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -105,5 +111,5 @@ export const BookingController = {
   deleteBooking,
   cancelBooking,
   confirmBooking,
-  completedBooking
+  completedBooking,
 };

@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Prisma, Service } from '@prisma/client';
+import { Package, Prisma } from '@prisma/client';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
 import {
-  serviceFieldSearchableFields,
-  serviceRelationalFields,
-  serviceRelationalFieldsMapper,
-} from './service.constant';
-import { IServiceFilterRequest } from './service.interface';
+  packageFieldSearchableFields,
+  packageRelationalFields,
+  packageRelationalFieldsMapper,
+} from './package.constant';
+import { IPackageFilterRequest } from './package.interface';
 
-const createService = async (data: Service): Promise<Service> => {
-  const result = await prisma.service.create({
+const createPackage = async (data: Package): Promise<Package> => {
+  const result = await prisma.package.create({
     data,
     include: {
       categorires: true,
@@ -20,10 +20,10 @@ const createService = async (data: Service): Promise<Service> => {
   return result;
 };
 
-const getAllServices = async (
-  filters: IServiceFilterRequest,
+const getAllPackages = async (
+  filters: IPackageFilterRequest,
   options: IPaginationOptions
-): Promise<Service[] | any> => {
+): Promise<Package[] | any> => {
   const { limit, page, skip } = paginationHelpers.calculatePagination(options);
   const { searchTerm, ...filterData } = filters;
 
@@ -31,7 +31,7 @@ const getAllServices = async (
 
   if (searchTerm) {
     andConditions.push({
-      OR: serviceFieldSearchableFields.map(field => ({
+      OR: packageFieldSearchableFields.map(field => ({
         [field]: {
           contains: searchTerm,
           mode: 'insensitive',
@@ -43,9 +43,9 @@ const getAllServices = async (
   if (Object.keys(filterData).length > 0) {
     andConditions.push({
       AND: Object.keys(filterData).map(key => {
-        if (serviceRelationalFields.includes(key)) {
+        if (packageRelationalFields.includes(key)) {
           return {
-            [serviceRelationalFieldsMapper[key]]: {
+            [packageRelationalFieldsMapper[key]]: {
               id: (filterData as any)[key],
             },
           };
@@ -60,13 +60,13 @@ const getAllServices = async (
     });
   }
 
-  const whereConditions: Prisma.ServiceWhereInput =
+  const whereConditions: Prisma.PackageWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {};
 
-  const result = await prisma.service.findMany({
+  const result = await prisma.package.findMany({
     include: {
       reviews: true,
-      categorires:true
+      categorires: true,
     },
     where: whereConditions,
     skip,
@@ -78,7 +78,7 @@ const getAllServices = async (
             createdAt: 'desc',
           },
   });
-  const total = await prisma.service.count({
+  const total = await prisma.package.count({
     where: whereConditions,
   });
 
@@ -92,38 +92,38 @@ const getAllServices = async (
   };
 };
 
-const getSingleService = async (id: string): Promise<Service | null> => {
-  const result = await prisma.service.findUnique({
+const getSinglePackage = async (id: string): Promise<Package | null> => {
+  const result = await prisma.package.findUnique({
     where: {
       id: id,
     },
     include: {
       reviews: {
         include: {
-          user: true 
-        }
+          user: true,
+        },
       },
-      categorires: true
+      categorires: true,
     },
   });
   return result;
 };
 
-const updateService = async (
+const updatePackage = async (
   id: string,
-  service: Service
-): Promise<Service> => {
-  const result = await prisma.service.update({
+  tourPackage: Package
+): Promise<Package> => {
+  const result = await prisma.package.update({
     where: {
       id: id,
     },
-    data: service,
+    data: tourPackage,
   });
   return result;
 };
 
-const deleteService = async (id: string): Promise<Service> => {
-  const result = await prisma.service.delete({
+const deletePackage = async (id: string): Promise<Package> => {
+  const result = await prisma.package.delete({
     where: {
       id: id,
     },
@@ -131,10 +131,10 @@ const deleteService = async (id: string): Promise<Service> => {
   return result;
 };
 
-export const serviceServices = {
-  createService,
-  getAllServices,
-  getSingleService,
-  updateService,
-  deleteService,
+export const PackageServices = {
+  createPackage,
+  getAllPackages,
+  getSinglePackage,
+  updatePackage,
+  deletePackage,
 };

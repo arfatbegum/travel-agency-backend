@@ -7,7 +7,7 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
 import { refundPayPalPayment } from '../../middlewares/refundPayPalPayment';
-import { IServiceFilterRequest } from '../service/service.interface';
+import { IPackageFilterRequest } from '../package/package.interface';
 import {
   bookingFieldSearchableFields,
   bookingRelationalFields,
@@ -24,27 +24,34 @@ paypal.configure({
 
 const createBooking = async (
   userId: string,
-  serviceId: string,
+  packageId: string,
   date: string,
+  adult: number,
   details: any
 ): Promise<any> => {
-  const { paymentMethod, paypalEmail, paymentStatus, paypalPayerId, paypalTransactionId } = details;
+  const {
+    paymentMethod,
+    paypalEmail,
+    paymentStatus,
+    paypalPayerId,
+    paypalTransactionId,
+  } = details;
 
-  const service = await prisma.service.findUnique({
+  const tourPackage = await prisma.package.findUnique({
     where: {
-      id: serviceId,
+      id: packageId,
     },
   });
 
-  if (!service) {
-    throw new Error('This service is not available');
+  if (!tourPackage) {
+    throw new Error('This package is not available');
   }
 
-  if (service.availableQunatity === 0) {
-    throw new Error('This service is fully booked');
+  if (tourPackage.availableQunatity === 0) {
+    throw new Error('This package is fully booked');
   }
 
-  const paymentAmount = service.price.toFixed(2).toString();
+  const paymentAmount = tourPackage.price.toFixed(2).toString();
 
   // Create a PaymentInfo record
   const paymentInfo = await prisma.paymentInfo.create({
@@ -59,7 +66,7 @@ const createBooking = async (
 
   // Retrieve the paymentInfoId
   const paymentInfoId = paymentInfo.id;
-  console.log(paymentInfoId)
+  console.log(paymentInfoId);
 
   // Define the PayPal payment creation JSON
   const createPaymentJson: ICreatePaymentJson = {
@@ -102,26 +109,27 @@ const createBooking = async (
   const booking = await prisma.booking.create({
     data: {
       date,
+      adult,
       userId,
-      serviceId,
+      packageId,
       status: 'processing',
       paymentInfoId: paymentInfoId,
     },
     include: {
       user: true,
-      service: true,
+      package: true,
       paymentInfo: true,
     },
   });
 
-  // Update service availability
-  await prisma.service.update({
+  // Update package availability
+  await prisma.package.update({
     where: {
-      id: serviceId,
+      id: packageId,
     },
     data: {
-      availableQunatity: service.availableQunatity - 1,
-      isBooked: service.availableQunatity - 1 === 0,
+      availableQunatity: tourPackage.availableQunatity - 1,
+      isBooked: tourPackage.availableQunatity - 1 === 0,
     },
   });
 
@@ -142,9 +150,8 @@ const createBooking = async (
   };
 };
 
-
 const getAllBooking = async (
-  filters: IServiceFilterRequest,
+  filters: IPackageFilterRequest,
   options: IPaginationOptions
 ): Promise<Booking[] | any> => {
   const { limit, page, skip } = paginationHelpers.calculatePagination(options);
@@ -189,8 +196,8 @@ const getAllBooking = async (
   const result = await prisma.booking.findMany({
     include: {
       user: true,
-      service: true,
-      paymentInfo:true
+      package: true,
+      paymentInfo: true,
     },
     where: whereConditions,
     skip,
@@ -223,7 +230,7 @@ const getSingleBooking = async (id: string): Promise<Booking | null> => {
     },
     include: {
       user: true,
-      service: true,
+      package: true,
     },
   });
   return result;
@@ -281,29 +288,29 @@ const cancelBooking = async (bookingId: string) => {
         },
       });
 
-      const availableService = await transactionClient.service.findUnique({
+      const availablePackage = await transactionClient.package.findUnique({
         where: {
-          id: booking.serviceId,
+          id: booking.packageId,
         },
       });
 
-      await transactionClient.service.update({
+      await transactionClient.package.update({
         where: {
-          id: booking.serviceId,
+          id: booking.packageId,
         },
         data: {
           availableQunatity: {
             increment: 1,
           },
           isBooked:
-            availableService && availableService.availableQunatity + 1 > 0
+            availablePackage && availablePackage.availableQunatity + 1 > 0
               ? false
               : true,
         },
       });
 
       // Initiate the PayPal refund
-      await refundPayPalPayment(booking.paymentInfoId, booking.serviceId);
+      await refundPayPalPayment(booking.paymentInfoId, booking.packageId);
 
       return {
         booking: bookingToCancel,

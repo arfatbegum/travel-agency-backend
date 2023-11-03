@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const createServiceZodSchema = z.object({
+const createPackageZodSchema = z.object({
   body: z.object({
     name: z.string({
       required_error: 'Name is required ',
@@ -41,7 +41,7 @@ const createServiceZodSchema = z.object({
   }),
 });
 
-const updateServiceZodSchema = z.object({
+const updatePackageZodSchema = z.object({
   body: z.object({
     name: z
       .string({
@@ -96,7 +96,7 @@ const updateServiceZodSchema = z.object({
   }),
 });
 
-export const ServiceValidation = {
-  createServiceZodSchema,
-  updateServiceZodSchema,
+export const PackageValidation = {
+  createPackageZodSchema,
+  updatePackageZodSchema,
 };

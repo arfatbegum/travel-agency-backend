@@ -1,3 +1,3 @@
-export type IServiceFilterRequest = {
+export type IPackageFilterRequest = {
     searchTerm?: string | undefined;
 }

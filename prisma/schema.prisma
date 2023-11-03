@@ -38,22 +38,23 @@ enum Role {
 model Category {
   id        String    @id @default(uuid())
   name      String
-  services  Service[]
+  packages  Package[]
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
 
   @@map("category")
 }
 
-model Service {
+model Package {
   id                String    @id @default(uuid())
   categoryId        String
   name              String
   validFrom         DateTime  @map("valid_from")
   validTill         DateTime  @map("valid_till")
+  country           String
   location          String
   price             Int
-  person            Int
+  people            Int
   isBooked          Boolean   @default(false)
   duration          String
   description       String
@@ -67,7 +68,21 @@ model Service {
   updatedAt         DateTime  @updatedAt @map("updated_at")
   Booking           Booking[]
 
-  @@map("service")
+  @@map("package")
+}
+
+model TeamMember {
+  id          String   @id @default(uuid())
+  name        String
+  designation String
+  email       String   @unique
+  linkedinUrl String
+  contactNo   String   @unique
+  profileImg  String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("teamMember")
 }
 
 model PaymentInfo {
@@ -78,16 +93,20 @@ model PaymentInfo {
   paypalTransactionId String?
   paypalPayerId       String?
   Booking             Booking[]
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @updatedAt @map("updated_at")
 }
 
 model Booking {
   id            String      @id @default(uuid())
   userId        String
   paymentInfoId String
-  serviceId     String
+  packageId     String
   date          DateTime
+  adult         Int
+  childern      Int?
   status        String
-  service       Service     @relation(fields: [serviceId], references: [id])
+  package       Package     @relation(fields: [packageId], references: [id])
   user          User        @relation(fields: [userId], references: [id])
   paymentInfo   PaymentInfo @relation(fields: [paymentInfoId], references: [id])
   createdAt     DateTime    @default(now()) @map("created_at")
@@ -96,20 +115,17 @@ model Booking {
   @@map("booking")
 }
 
-model Review {
+model Contact {
   id        String   @id @default(uuid())
-  userId    String
-  serviceId String?
-  newsId    String?
-  rating    Int
-  comment   String
-  user      User     @relation(fields: [userId], references: [id])
-  service   Service? @relation(fields: [serviceId], references: [id])
+  name      String
+  email     String
+  contactNo String
+  message   String
+  status    String   @default("pending")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-  News      News?    @relation(fields: [newsId], references: [id])
 
-  @@map("review")
+  @@map("contact")
 }
 
 model News {
@@ -148,4 +164,20 @@ model Feedback {
   updatedAt   DateTime @updatedAt @map("updated_at")
 
   @@map("feedback")
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  userId    String
+  packageId String?
+  newsId    String?
+  rating    Int
+  comment   String
+  user      User     @relation(fields: [userId], references: [id])
+  package   Package? @relation(fields: [packageId], references: [id])
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  News      News?    @relation(fields: [newsId], references: [id])
+
+  @@map("review")
 }

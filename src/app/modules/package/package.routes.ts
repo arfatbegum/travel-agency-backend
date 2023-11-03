@@ -31,4 +31,4 @@ router.delete(
   PackageController.deletePackage
 );
 
-export const ServiceRoutes = router;
+export const PackageRoutes = router;

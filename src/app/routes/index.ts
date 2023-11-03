@@ -6,10 +6,11 @@ import { CategoryRoutes } from '../modules/category/category.routes';
 import { FaqRoutes } from '../modules/faq/faq.routes';
 import { FeedbackRoutes } from '../modules/feedback/feedback.routes';
 import { NewsRoutes } from '../modules/news/news.routes';
-import { ServiceRoutes } from '../modules/package/package.routes';
 import { ReviewRoutes } from '../modules/review/review.routes';
 import { SuperAdminRoutes } from '../modules/super-admin/superAdmin.route';
 import { UserRoutes } from '../modules/user/user.route';
+import { PackageRoutes } from '../modules/package/package.routes';
+import { TeamRoutes } from '../modules/team/team.routes';
 
 const router = express.Router();
 
@@ -31,12 +32,16 @@ const moduleRoutes = [
     routes: CategoryRoutes,
   },
   {
-    path: '/service',
-    routes: ServiceRoutes,
+    path: '/package',
+    routes: PackageRoutes,
   },
   {
     path: '/booking',
     routes: BookingRoutes,
+  },
+  {
+    path: '/team',
+    routes: TeamRoutes,
   },
   {
     path: '/review',

@@ -34,6 +34,12 @@ router.get(
   UserController.getMyEnquiry
 );
 
+router.get(
+  '/my-feedback',
+  auth(ENUM_USER_ROLE.USER),
+  UserController.getMyFeedback
+);
+
 router.get('/', auth(ENUM_USER_ROLE.ADMIN), UserController.getAllUsers);
 
 router.get('/:id', auth(ENUM_USER_ROLE.ADMIN), UserController.getSingleUser);

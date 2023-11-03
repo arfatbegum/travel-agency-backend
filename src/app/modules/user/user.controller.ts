@@ -128,6 +128,18 @@ const getMyEnquiry = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getMyFeedback = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.user?.userId;
+  const result = await UserService.getMyFeedback(userId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'My Feddbacks retrieved successfully',
+    data: result,
+  });
+});
+
 export const UserController = {
   createUser,
   getAllUsers,
@@ -138,4 +150,5 @@ export const UserController = {
   updateMyProfile,
   getMyBooking,
   getMyEnquiry,
+  getMyFeedback
 };

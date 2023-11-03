@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable no-unused-vars */
-import { Booking, Contact, Prisma, Role, User } from '@prisma/client';
+import { Booking, Contact, Feedback, Prisma, Role, User } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
@@ -210,6 +210,18 @@ const getMyEnquiry = async (userId: string): Promise<Contact[] | null> => {
   return result;
 };
 
+const getMyFeedback = async (userId: string): Promise<Feedback[] | null> => {
+  const result = await prisma.feedback.findMany({
+    where: {
+      userId: userId,
+    },
+    include: {
+      user: true,
+    },
+  });
+  return result;
+};
+
 export const UserService = {
   createUser,
   getAllUsers,
@@ -220,4 +232,5 @@ export const UserService = {
   updateMyProfile,
   getMyBooking,
   getMyEnquiry,
+  getMyFeedback
 };

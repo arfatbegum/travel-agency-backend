@@ -29,6 +29,10 @@ const moduleRoutes = [
     routes: AdminRoutes,
   },
   {
+    path: '/super-admin',
+    routes: SuperAdminRoutes,
+  },
+  {
     path: '/category',
     routes: CategoryRoutes,
   },
@@ -59,10 +63,6 @@ const moduleRoutes = [
   {
     path: '/faq',
     routes: FaqRoutes,
-  },
-  {
-    path: '/super-admin',
-    routes: SuperAdminRoutes,
   },
   {
     path: '/feedback',

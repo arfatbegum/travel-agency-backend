@@ -1,0 +1,126 @@
+Sat Nov 11 2023 17:34:7 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.package.findMany()` invocation:
+
+{
+  include: {
+    reviews: true,
+    categorires: true
+  },
+  where: {
+    AND: [
+      {
+        OR: [
+          {
+            name: {
+              contains: "Honeymoon ",
+              mode: "insensitive"
+            }
+          },
+          {
+            location: {
+              contains: "Honeymoon ",
+              mode: "insensitive"
+            }
+          },
+          {
+            categorires: {
+              contains: "Honeymoon ",
+              mode: "insensitive"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  skip: 0,
+  take: 10,
+  orderBy: {
+    createdAt: "desc"
+  }
+}
+
+Unknown argument `contains`. Available options are marked with ?.
+Sat Nov 11 2023 17:34:13 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.package.findMany()` invocation:
+
+{
+  include: {
+    reviews: true,
+    categorires: true
+  },
+  where: {
+    AND: [
+      {
+        OR: [
+          {
+            name: {
+              contains: "Honeymoon",
+              mode: "insensitive"
+            }
+          },
+          {
+            location: {
+              contains: "Honeymoon",
+              mode: "insensitive"
+            }
+          },
+          {
+            categorires: {
+              contains: "Honeymoon",
+              mode: "insensitive"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  skip: 0,
+  take: 10,
+  orderBy: {
+    createdAt: "desc"
+  }
+}
+
+Unknown argument `contains`. Available options are marked with ?.
+Sat Nov 11 2023 17:36:2 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.package.findMany()` invocation:
+
+{
+  include: {
+    reviews: true,
+    categorires: true
+  },
+  where: {
+    AND: [
+      {
+        OR: [
+          {
+            name: {
+              contains: "h",
+              mode: "insensitive"
+            }
+          },
+          {
+            location: {
+              contains: "h",
+              mode: "insensitive"
+            }
+          },
+          {
+            categorires: {
+              contains: "h",
+              mode: "insensitive"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  skip: 0,
+  take: 10,
+  orderBy: {
+    createdAt: "desc"
+  }
+}
+
+Unknown argument `contains`. Available options are marked with ?.

@@ -128,6 +128,18 @@ const getMyEnquiry = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSingleEnquiry = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await UserService.getSingleEnquiry(id);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Enquiry fetched successfully',
+    data: result,
+  });
+});
+
 const getMyFeedback = catchAsync(async (req: Request, res: Response) => {
   const userId = req.user?.userId;
   const result = await UserService.getMyFeedback(userId);
@@ -150,5 +162,6 @@ export const UserController = {
   updateMyProfile,
   getMyBooking,
   getMyEnquiry,
+  getSingleEnquiry,
   getMyFeedback
 };

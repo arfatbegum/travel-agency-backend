@@ -210,6 +210,16 @@ const getMyEnquiry = async (userId: string): Promise<Contact[] | null> => {
   return result;
 };
 
+const getSingleEnquiry = async (id: string): Promise<Contact | null> => {
+  const result = await prisma.contact.findUnique({
+    where: { id },
+    include: {
+      user: true,
+    },
+  });
+  return result;
+};
+
 const getMyFeedback = async (userId: string): Promise<Feedback[] | null> => {
   const result = await prisma.feedback.findMany({
     where: {
@@ -232,5 +242,6 @@ export const UserService = {
   updateMyProfile,
   getMyBooking,
   getMyEnquiry,
-  getMyFeedback
+  getMyFeedback,
+  getSingleEnquiry,
 };

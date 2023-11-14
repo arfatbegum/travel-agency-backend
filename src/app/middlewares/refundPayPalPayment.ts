@@ -3,18 +3,18 @@ import prisma from '../../shared/prisma';
 
 export const refundPayPalPayment = async (
   paymentId: string,
-  serviceId: string
+  packageId: string
 ) => {
-  const service = await prisma.service.findUnique({
+  const tourPackage = await prisma.package.findUnique({
     where: {
-      id: serviceId,
+      id: packageId,
     },
   });
-  if (!service) {
-    throw new Error('This service is not available');
+  if (!tourPackage) {
+    throw new Error('This Package is not available');
     }
     
-  const paymentAmount = service.price.toFixed(2).toString();
+  const paymentAmount = tourPackage.price.toFixed(2).toString();
 
   const refundRequest = {
     amount: {
@@ -23,9 +23,9 @@ export const refundPayPalPayment = async (
     },
   };
 
-  // Create the refund
-  paypal.sale.refund(paymentId, refundRequest, error => {
+  paypal.sale.refund(paymentId, refundRequest, (error) => {
     if (error) {
+      console.error('Error refunding PayPal payment:', error);
       throw new Error('Error refunding PayPal payment');
     } else {
       // Handle the successful refund

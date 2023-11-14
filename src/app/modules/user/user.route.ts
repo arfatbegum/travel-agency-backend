@@ -35,21 +35,27 @@ router.get(
 );
 
 router.get(
+  '/my-enquiry/:id',
+  auth(ENUM_USER_ROLE.USER),
+  UserController.getSingleEnquiry
+);
+
+router.get(
   '/my-feedback',
   auth(ENUM_USER_ROLE.USER),
   UserController.getMyFeedback
 );
 
-router.get('/', auth(ENUM_USER_ROLE.ADMIN), UserController.getAllUsers);
+router.get('/', auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN), UserController.getAllUsers);
 
-router.get('/:id', auth(ENUM_USER_ROLE.ADMIN), UserController.getSingleUser);
+router.get('/:id', auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN), UserController.getSingleUser);
 
 router.patch(
   '/:id',
-  auth(ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(UserValidation.updateUserZodSchema),
   UserController.updateUser
 );
-router.delete('/:id', auth(ENUM_USER_ROLE.ADMIN), UserController.deleteAUser);
+router.delete('/:id', auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN), UserController.deleteAUser);
 
 export const UserRoutes = router;

@@ -48,6 +48,9 @@ const getAllFeedback = async (
     andConditons.length > 0 ? { AND: andConditons } : {};
 
   const result = await prisma.feedback.findMany({
+    include: {
+      user: true,
+    },
     where: whereConditons,
     skip,
     take: limit,

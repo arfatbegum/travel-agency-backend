@@ -258,13 +258,13 @@ const deleteBooking = async (id: string): Promise<Booking> => {
   return result;
 };
 
-const cancelBooking = async (bookingId: string) => {
+const cancelBooking = async (id: string) => {
+  console.log(id);
   const booking = await prisma.booking.findUnique({
     where: {
-      id: bookingId,
+      id: id,
     },
   });
-
   if (!booking) {
     throw new Error('Booking does not exist');
   }
@@ -281,7 +281,7 @@ const cancelBooking = async (bookingId: string) => {
     async transactionClient => {
       const bookingToCancel = await transactionClient.booking.update({
         where: {
-          id: bookingId,
+          id: id,
         },
         data: {
           status: 'cancelled',

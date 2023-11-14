@@ -4,7 +4,6 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
 import {
-  packageFieldSearchableFields,
   packageRelationalFields,
   packageRelationalFieldsMapper,
 } from './package.constant';
@@ -31,7 +30,7 @@ const getAllPackages = async (
 
   if (searchTerm) {
     andConditions.push({
-      OR: packageFieldSearchableFields.map(field => ({
+      OR: ['name', 'location', 'duration','country'].map(field => ({
         [field]: {
           contains: searchTerm,
           mode: 'insensitive',

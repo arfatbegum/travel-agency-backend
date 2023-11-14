@@ -8,7 +8,7 @@ const createContactZodSchema = z.object({
     email: z.string({
       required_error: 'Email is required ',
     }),
-    conatctNo: z.string({
+    contactNo: z.string({
       required_error: 'Contact No is required ',
     }),
     message: z.string({
@@ -34,7 +34,7 @@ const updateContactZodSchema = z.object({
         required_error: 'Email is required ',
       })
       .optional(),
-    conatctNo: z
+    contactNo: z
       .string({
         required_error: 'Contact No is required ',
       })

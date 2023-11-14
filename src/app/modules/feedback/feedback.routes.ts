@@ -10,8 +10,7 @@ const router = express.Router();
 router.get('/', FeedbackController.getAllFeedback);
 
 router.get(
-  '/id',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  '/:id',
   FeedbackController.getSingleFeedback
 );
 

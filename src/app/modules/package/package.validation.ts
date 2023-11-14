@@ -14,8 +14,8 @@ const createPackageZodSchema = z.object({
     price: z.number({
       required_error: 'Password is required ',
     }),
-    person: z.number({
-      required_error: 'person is required ',
+    people: z.number({
+      required_error: 'people is required ',
     }),
     duration: z.string({
       required_error: 'duration is required ',
@@ -63,7 +63,7 @@ const updatePackageZodSchema = z.object({
         required_error: 'Password is required ',
       })
       .optional(),
-    person: z
+    people: z
       .number({
         required_error: 'person is required ',
       })

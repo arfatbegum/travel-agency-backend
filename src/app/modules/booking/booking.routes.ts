@@ -43,6 +43,6 @@ router.patch(
   auth(ENUM_USER_ROLE.ADMIN),
   BookingController.completedBooking
 );
-router.delete('/', auth(ENUM_USER_ROLE.ADMIN), BookingController.deleteBooking);
+router.delete('/:id', auth(ENUM_USER_ROLE.ADMIN), BookingController.deleteBooking);
 
 export const BookingRoutes = router;

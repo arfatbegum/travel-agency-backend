@@ -6,84 +6,9 @@
     "auditLog": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\.3c41de3fd4aa1ed2c47989603a6f40eccba940c7-audit.json",
     "files": [
         {
-            "date": 1699036705135,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-03-11-21-success.log",
-            "hash": "a3f1c47c9eb50a9a8aed10c6a455b543c167b000fe513818f9f495357e0419be"
-        },
-        {
-            "date": 1699040560962,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-03-11-22-success.log",
-            "hash": "3d59c856dc7792e7ba1f09ca2e6248d6c1c05944bd08d7af88e45e997889f3bc"
-        },
-        {
-            "date": 1699174754450,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-05-11-11-success.log",
-            "hash": "ce0a47b4c46d5360e33080e45dc1f27b0fa1f9e5c701eca9158b35b11827f4b3"
-        },
-        {
-            "date": 1699177574828,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-05-11-12-success.log",
-            "hash": "f7a635e514129af68d7a781f71545c6703f6e152474cbc501c89d4efb546defa"
-        },
-        {
-            "date": 1699207635894,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-05-11-21-success.log",
-            "hash": "8a80e7ea02de5cb6faf952d39dd32fbd9ce332dceafad3be0106cefea132c685"
-        },
-        {
-            "date": 1699372765229,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-07-11-18-success.log",
-            "hash": "703231c2d726210925bba09e6df97bb6effbea69a54676ef14c526848bc2bce8"
-        },
-        {
-            "date": 1699384420564,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-07-11-22-success.log",
-            "hash": "b1b86e0c731de73a8e3f14785b8842d86311aed105ec14ed9ef59a22466caef6"
-        },
-        {
-            "date": 1699428209644,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-08-11-10-success.log",
-            "hash": "953ec159555e5ab053d59b33dfdcca135bf85a94ebca2a111b010171f4a4d105"
-        },
-        {
-            "date": 1699462915073,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-08-11-20-success.log",
-            "hash": "2f966df0391302765a1c8f1fc2793988c09ee97200fa2d7108d413c65c3df4b4"
-        },
-        {
-            "date": 1699518553517,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-09-11-11-success.log",
-            "hash": "aef6cfb9f9704ba43d394cfcea8a51d60484c12a7e3b9f31f044f70684e61095"
-        },
-        {
-            "date": 1699527250301,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-09-11-13-success.log",
-            "hash": "567f1eae98deda71a2df747e1fc3c09637a3617eedfff92e62b2bd6f7b84f4cf"
-        },
-        {
-            "date": 1699693299242,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-11-11-12-success.log",
-            "hash": "ec15e0f4cae195ef360d1bc180213b22a3d536195918b177ac4606f233796811"
-        },
-        {
-            "date": 1699713899858,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-11-11-17-success.log",
-            "hash": "4541909b55712a0591984b22491d065fbebc86234015b6b88171c27438573a9f"
-        },
-        {
-            "date": 1699714997398,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-11-11-18-success.log",
-            "hash": "96fe9b3b704642c489ba8bf39818e69c9b94217f05cc7cd3f9f717dfcf1141b8"
-        },
-        {
-            "date": 1699817046753,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-12-11-22-success.log",
-            "hash": "d039f434ff6fecdd27c48d052feb6e3679f477f7207eb26c97325d776ee02c3b"
-        },
-        {
-            "date": 1699946192674,
-            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-14-11-10-success.log",
-            "hash": "221ec6b0f86994ef61baf167d00bb3840baf65cc629a8cab9c7f36b3a016e07b"
+            "date": 1699977203274,
+            "name": "E:\\wayfarer-travel-backend\\logs\\winston\\successes\\phu-2023-14-11-18-success.log",
+            "hash": "8ef16ea63c39eca1f68f0ac4cabe8ed9ed241f810160e3e58a294ee19b5d4dab"
         }
     ],
     "hashType": "sha256"

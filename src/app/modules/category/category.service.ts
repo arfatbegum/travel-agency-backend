@@ -93,10 +93,13 @@ const updateCategory = async (
   return result;
 };
 
-const deleteCategory = async (id: string): Promise<Category | null> => {
+const deleteCategory = async (categoryId: string): Promise<Category | null> => {
   const result = await prisma.category.delete({
     where: {
-      id,
+      id: categoryId,
+    },
+    include: {
+      packages: true,
     },
   });
   return result;

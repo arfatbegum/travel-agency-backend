@@ -4,12 +4,11 @@ import prisma from '../../../shared/prisma';
 
 const addReview = async (data: Review): Promise<Review> => {
   const result = await prisma.review.create({
-      data: data,
-      include: {
-        user: true,
-      service:true
-  },
-      
+    data: data,
+    include: {
+      user: true,
+      package: true,
+    },
   });
 
   return result;
@@ -18,8 +17,8 @@ const addReview = async (data: Review): Promise<Review> => {
 const getAllReviews = async () => {
   const result = await prisma.review.findMany({
     include: {
-          user: true,
-        service:true
+      user: true,
+      package: true,
     },
   });
   const total = await prisma.review.count();
@@ -51,7 +50,7 @@ const updateReview = async (
   return result;
 };
 
-const deleteReview= async (id: string): Promise<Review | null> => {
+const deleteReview = async (id: string): Promise<Review | null> => {
   const result = await prisma.review.delete({
     where: {
       id,
@@ -59,8 +58,6 @@ const deleteReview= async (id: string): Promise<Review | null> => {
   });
   return result;
 };
-
-
 
 export const ReviewService = {
   addReview,

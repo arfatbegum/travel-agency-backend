@@ -18,5 +18,5 @@ router.patch('/:id', (0, validateRequest_1.default)(booking_validation_1.Booking
 router.patch('/cancel-booking/:id', (0, validateRequest_1.default)(booking_validation_1.BookingValidation.updateBookingZodSchema), (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN, user_1.ENUM_USER_ROLE.USER), booking_controller_1.BookingController.cancelBooking);
 router.patch('/confirm-booking/:id', (0, validateRequest_1.default)(booking_validation_1.BookingValidation.updateBookingZodSchema), (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), booking_controller_1.BookingController.confirmBooking);
 router.patch('/complete-booking/:id', (0, validateRequest_1.default)(booking_validation_1.BookingValidation.updateBookingZodSchema), (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), booking_controller_1.BookingController.completedBooking);
-router.delete('/', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), booking_controller_1.BookingController.deleteBooking);
+router.delete('/:id', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), booking_controller_1.BookingController.deleteBooking);
 exports.BookingRoutes = router;

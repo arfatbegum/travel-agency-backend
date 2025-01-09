@@ -94,10 +94,13 @@ const updateCategory = (id, payload) => __awaiter(void 0, void 0, void 0, functi
     });
     return result;
 });
-const deleteCategory = (id) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteCategory = (categoryId) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma_1.default.category.delete({
         where: {
-            id,
+            id: categoryId,
+        },
+        include: {
+            packages: true,
         },
     });
     return result;
